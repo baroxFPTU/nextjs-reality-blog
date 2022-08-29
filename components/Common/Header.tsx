@@ -1,11 +1,21 @@
+import { Container, Heading, Text } from "@chakra-ui/react";
 import type { ReactElement } from "react";
-import styles from "styles/Header.module.scss";
 
 export default function Header(): ReactElement {
   return (
-    <header className={styles.HeaderContainer}>
-      <h2>Reality blog</h2>
-      <p>Keep it simple and reality</p>
+    <header>
+      <Container
+        pt={12}
+        pb={8}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        gap={4}
+      >
+        <Heading size="4xl">Reality</Heading>
+        <Text fontSize="xl">Keep it simple and reality</Text>
+      </Container>
     </header>
   );
 }

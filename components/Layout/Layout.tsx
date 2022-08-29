@@ -1,5 +1,9 @@
+import { Box } from "@chakra-ui/react";
+
 import Header from "components/Common/Header";
+import { Navbar } from "components/Common/Navbar";
 import type { ReactElement } from "react";
+import styles from "styles/Layout.module.scss";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -9,10 +13,11 @@ export interface LayoutProps {
 export default function Layout({ children, type }: LayoutProps): ReactElement {
   if (type == "main") {
     return (
-      <>
+      <Box h="100vh" display="flex" flexDirection="column">
         <Header />
-        {children}
-      </>
+        <Box flexGrow={1}>{children}</Box>
+        <Navbar />
+      </Box>
     );
   }
 
