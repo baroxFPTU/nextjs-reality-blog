@@ -3,7 +3,6 @@ import { Box } from "@chakra-ui/react";
 import Header from "components/Common/Header";
 import { Navbar } from "components/Common/Navbar";
 import type { ReactElement } from "react";
-import styles from "styles/Layout.module.scss";
 
 export interface LayoutProps {
   children: React.ReactNode;
