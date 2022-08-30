@@ -1,3 +1,5 @@
+@import './settings';
+
 html,
 body {
   padding: 0;
@@ -13,14 +15,37 @@ a {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  max-width: 980px;
+  max-width: $app-maxwidth;
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Typography
+h1, h2, h3 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
 }
 
 button {
-  background: transparent;
+  background: #fff;
   border: none;
   outline: none;
 }
