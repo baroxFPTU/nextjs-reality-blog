@@ -1,19 +1,21 @@
-import { Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 import Layout from "components/Layout";
-import PostLayout from "components/Layout/PostLayout";
 import { API_URL } from "config/api";
 import type { ReactElement } from "react";
 import { IAlbum, IPost } from "utils/posts";
 import { Context } from "vm";
 
 export interface PostProps {
-  postData: string | number;
+  postData: IPost;
 }
 
 export default function Post({ postData }: PostProps): ReactElement {
   return (
     <Layout>
-      <Heading>Post - {postData}</Heading>
+      <Container maxW={{ base: "container.sm", md: "container.md" }}>
+        <Heading>Post - {postData.title}</Heading>
+        {postData.body}
+      </Container>
     </Layout>
   );
 }
@@ -39,9 +41,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: Context) {
+  const postResponse = await fetch(`${API_URL}/posts/${params.id}`);
+  const postData = await postResponse.json();
   return {
     props: {
-      postData: params.id,
+      postData: postData,
     },
   };
 }
