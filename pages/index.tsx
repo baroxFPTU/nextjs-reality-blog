@@ -1,11 +1,14 @@
 import Layout from "components/Layout";
 import type { NextPage } from "next";
-import { Container } from "@chakra-ui/react";
+import { Container, Grid } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { getPostsByQuery, Post } from "utils/posts";
+import { getPostsByQuery, IAlbum, IPost } from "utils/posts";
 import { Context } from "vm";
+import Post from "components/Post";
+import Head from "next/head";
+import AlbumItem from "components/AlbumItem";
 
 const Home: NextPage = ({ posts }) => {
   const router = useRouter();
@@ -14,17 +17,27 @@ const Home: NextPage = ({ posts }) => {
   useEffect(() => {
     router.push({
       query: {
-        id: 1,
         d: queries[tabIndex],
       },
     });
   }, [tabIndex]);
 
-  console.log(posts);
-
+  const postDOMs = posts && posts.length > 0 && (
+    <Grid templateColumns={["1fr", "1fr 1fr", "repeat(3, 1fr)"]} gap={6}>
+      {posts.map((post: IPost | IAlbum) => (
+        <Post
+          key={post.id + "." + queries[tabIndex] + post.title}
+          data={post as IPost}
+        />
+      ))}
+    </Grid>
+  );
   return (
-    <Layout type="main">
-      <Container>
+    <Layout>
+      <Head>
+        <title>Home - Reality Blog</title>
+      </Head>
+      <Container maxW={["container.sm", "container.md", "container.xl"]}>
         <Tabs
           variant="soft-rounded"
           colorScheme="green"
@@ -37,23 +50,9 @@ const Home: NextPage = ({ posts }) => {
             <Tab>Albums</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel key={1}>
-              <p>All here</p>
-            </TabPanel>
-            <TabPanel key={2}>
-              {posts &&
-                posts.length > 0 &&
-                posts.map((post: Post) => (
-                  <div key={post.id}>{post.title}</div>
-                ))}
-            </TabPanel>
-            <TabPanel key={3}>
-              {posts &&
-                posts.length > 0 &&
-                posts.map((post: Post) => (
-                  <div key={post.id}>{post.title}</div>
-                ))}
-            </TabPanel>
+            <TabPanel key={1}>{postDOMs} </TabPanel>
+            <TabPanel key={2}>{postDOMs}</TabPanel>
+            <TabPanel key={3}>{postDOMs}</TabPanel>
           </TabPanels>
         </Tabs>
       </Container>
@@ -62,11 +61,11 @@ const Home: NextPage = ({ posts }) => {
 };
 
 export async function getServerSideProps(context: Context) {
-  const posts = await getPostsByQuery(context.query.d, context.query.id);
+  const posts = await getPostsByQuery(context.query.d || "all", "1");
 
   return {
     props: {
-      posts: posts,
+      posts: posts || [],
     },
   };
 }
