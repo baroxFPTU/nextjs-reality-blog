@@ -2,7 +2,7 @@ import { Box, chakra } from "@chakra-ui/react";
 
 import Header from "components/Common/Header";
 import { Navbar } from "components/Common/Navbar";
-import { AnimatePresence, isValidMotionProp, motion } from "framer-motion";
+import { isValidMotionProp, motion } from "framer-motion";
 import type { ReactElement } from "react";
 
 export interface LayoutProps {
@@ -15,16 +15,28 @@ export const variants = {
     y: 20,
     x: 0,
     opacity: 0,
+    transition: {
+      duration: 0.4,
+      type: "easeInOut",
+    },
   },
   show: {
     y: 0,
     x: 0,
     opacity: 1,
+    transition: {
+      duration: 0.4,
+      type: "easeInOut",
+    },
   },
   exit: {
     y: 20,
     x: 0,
     opacity: 0,
+    transition: {
+      duration: 0.4,
+      type: "easeInOut",
+    },
   },
 };
 
@@ -39,10 +51,6 @@ export default function Layout({ children, type }: LayoutProps): ReactElement {
       initial="hidden"
       animate="show"
       exit="exit"
-      transition={{
-        duration: 0.4,
-        type: "ease-in-out",
-      }}
       h="100vh"
       display="flex"
       flexDirection="column"
