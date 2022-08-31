@@ -10,7 +10,7 @@ import Post from "components/Post";
 import Head from "next/head";
 import AlbumItem from "components/AlbumItem";
 
-const Home: NextPage = ({ posts }) => {
+const Home: NextPage = ({ posts }: any) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(0);
   const queries = ["all", "posts", "albums"];
