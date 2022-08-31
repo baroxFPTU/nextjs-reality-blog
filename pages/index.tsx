@@ -24,23 +24,16 @@ const Home: NextPage = ({ posts }) => {
 
   const postDOMs = posts && posts.length > 0 && (
     <Grid templateColumns={["1fr", "1fr 1fr", "repeat(3, 1fr)"]} gap={6}>
-      {posts.map((post: IPost | IAlbum) =>
-        post.label == "posts" ? (
-          <Post
-            key={post.id + "." + queries[tabIndex] + post.title}
-            data={post as IPost}
-          />
-        ) : (
-          <AlbumItem
-            key={post.id + "." + queries[tabIndex] + post.title}
-            data={post as IAlbum}
-          />
-        )
-      )}
+      {posts.map((post: IPost | IAlbum) => (
+        <Post
+          key={post.id + "." + queries[tabIndex] + post.title}
+          data={post as IPost}
+        />
+      ))}
     </Grid>
   );
   return (
-    <Layout type="main">
+    <Layout>
       <Head>
         <title>Home - Reality Blog</title>
       </Head>

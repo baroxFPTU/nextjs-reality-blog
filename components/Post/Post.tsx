@@ -16,30 +16,68 @@ export interface PostProps {
   data: IPost;
 }
 
-export default function Post({ data }: PostProps): ReactElement {
+export const PostDefaultIThumb = () => {
   return (
     <Box
-      p={6}
+      w="100%"
+      h={{ base: "150px", md: "200px" }}
+      bg="gray.200"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      userSelect="none"
+    >
+      <Heading
+        as="h2"
+        fontSize={{ base: "3xl", md: "4xl" }}
+        textAlign="center"
+        color="gray.300"
+        textShadow="inner"
+        textDecoration="none"
+      >
+        Barox.
+      </Heading>
+    </Box>
+  );
+};
+
+export default function Post({ data }: PostProps): ReactElement {
+  const postHref = `posts/${data.id}`;
+
+  return (
+    <Box
       border="1px"
       borderColor="gray.200"
       borderRadius={8}
       display="flex"
       flexDirection="column"
+      overflow="hidden"
     >
-      <NextLink href={`posts/${data.id}`}>
-        <Link>
-          <Heading noOfLines={[1, 2, 3]} size="md">
-            {data.title}
-          </Heading>
+      <NextLink href={postHref}>
+        <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+          <PostDefaultIThumb />
         </Link>
       </NextLink>
-      <HStack justifyContent="space-between" pt={3} pb={4}>
-        <Text size="md" noOfLines={2}>
-          {moment(data.createdAt).subtract(data.id, "d").format("DD/MM/YYYY")}
-        </Text>
-        <Tag>{data.label}</Tag>
-      </HStack>
-      <Text>{data.body}</Text>
+      <Box
+        p={6}
+        display="flex"
+        flexDirection="column"
+        minH={{ base: "100px", md: "150px" }}
+      >
+        <NextLink href={postHref}>
+          <Link>
+            <Heading noOfLines={[1, 2, 3]} size="md" textAlign="center">
+              {data.title}
+            </Heading>
+          </Link>
+        </NextLink>
+        <Box mt="auto" display="flex" justifyContent="space-between">
+          <Text size="md" noOfLines={2}>
+            {moment(data.createdAt).subtract(data.id, "d").format("DD/MM/YYYY")}
+          </Text>
+          <Tag>{data.label}</Tag>
+        </Box>
+      </Box>
     </Box>
   );
 }

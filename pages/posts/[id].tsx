@@ -1,4 +1,6 @@
 import { Heading } from "@chakra-ui/react";
+import Layout from "components/Layout";
+import PostLayout from "components/Layout/PostLayout";
 import { API_URL } from "config/api";
 import type { ReactElement } from "react";
 import { IAlbum, IPost } from "utils/posts";
@@ -10,9 +12,9 @@ export interface PostProps {
 
 export default function Post({ postData }: PostProps): ReactElement {
   return (
-    <>
+    <Layout>
       <Heading>Post - {postData}</Heading>
-    </>
+    </Layout>
   );
 }
 
