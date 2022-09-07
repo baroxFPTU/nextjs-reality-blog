@@ -15,6 +15,7 @@ export interface IAlbum {
   title: string;
   createdAt?: number;
   label?: string;
+  [key: string]: any;
 }
 
 export const getPostsByQuery = async (query: string, id: string) => {

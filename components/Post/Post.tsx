@@ -7,6 +7,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import Comment from "components/Comment/Comment";
 import moment from "moment";
 import NextLink from "next/link";
 import type { ReactElement } from "react";
@@ -42,7 +43,7 @@ export const PostDefaultIThumb = () => {
 };
 
 export default function Post({ data }: PostProps): ReactElement {
-  const postHref = `posts/${data.id}`;
+  const postHref = `${data.label}/${data.id}`;
 
   return (
     <Box

@@ -1,7 +1,12 @@
 import type { ReactElement } from "react";
 import { Grid, Icon, Button, Container, Box } from "@chakra-ui/react";
-import { AiOutlineHome } from "react-icons/ai";
+import {
+  AiOutlineUser,
+  AiOutlineHome,
+  AiOutlineCreditCard,
+} from "react-icons/ai";
 import styles from "styles/Navbar.module.scss";
+import NextLink from "next/link";
 
 export function Navbar(): ReactElement {
   return (
@@ -12,13 +17,25 @@ export function Navbar(): ReactElement {
           templateColumns="repeat(3, 1fr)"
         >
           <Box className={styles.NavbarItem}>
-            <Icon as={AiOutlineHome} />
+            <NextLink href="/">
+              <a>
+                <Icon as={AiOutlineHome} />
+              </a>
+            </NextLink>
           </Box>
           <Box className={styles.NavbarItem}>
-            <Icon as={AiOutlineHome} />
+            <NextLink href="/payment">
+              <a>
+                <Icon as={AiOutlineCreditCard} />
+              </a>
+            </NextLink>
           </Box>
           <Box className={styles.NavbarItem}>
-            <Icon as={AiOutlineHome} />
+            <NextLink href="/me">
+              <a>
+                <Icon as={AiOutlineUser} />
+              </a>
+            </NextLink>
           </Box>
         </Grid>
       </Container>

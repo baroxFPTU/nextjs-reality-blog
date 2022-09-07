@@ -1,11 +1,10 @@
 import { Box, chakra } from "@chakra-ui/react";
 
-import Header from "components/Common/Header";
 import { Navbar } from "components/Common/Navbar";
 import { isValidMotionProp, motion } from "framer-motion";
 import type { ReactElement } from "react";
 
-export interface LayoutProps {
+export interface PostLayoutProps {
   children: React.ReactNode;
   type?: string;
 }
@@ -44,7 +43,10 @@ export const ChakraBox = chakra(motion.div, {
   shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === "children",
 });
 
-export default function Layout({ children, type }: LayoutProps): ReactElement {
+export default function PostLayoPostut({
+  children,
+  type,
+}: PostLayoutProps): ReactElement {
   return (
     <ChakraBox
       variants={variants}
@@ -54,9 +56,9 @@ export default function Layout({ children, type }: LayoutProps): ReactElement {
       h="100vh"
       display="flex"
       flexDirection="column"
+      pt={20}
     >
       <Box flexGrow={1} overflow="auto">
-        <Header />
         {children}
       </Box>
       <Navbar />
