@@ -18,6 +18,7 @@ export default function AlbumDetail({
     <Layout>
       <Head>
         <title>{albumData.title}</title>
+        <meta name="robots" content="all" />
       </Head>
       <Container maxW={{ base: "container.sm", md: "container.md" }}>
         <Heading as="h1" size="2xl">

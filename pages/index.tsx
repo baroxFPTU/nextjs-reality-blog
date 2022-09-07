@@ -8,7 +8,6 @@ import { getPostsByQuery, IAlbum, IPost } from "utils/posts";
 import { Context } from "vm";
 import Post from "components/Post";
 import Head from "next/head";
-import AlbumItem from "components/AlbumItem";
 
 const Home: NextPage = ({ posts }: any) => {
   const router = useRouter();
@@ -36,6 +35,7 @@ const Home: NextPage = ({ posts }: any) => {
     <Layout>
       <Head>
         <title>Home - Reality Blog</title>
+        <meta name="robots" content="all" key="robots" />
       </Head>
       <Container maxW={["container.sm", "container.md", "container.xl"]}>
         <Tabs

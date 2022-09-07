@@ -5,6 +5,7 @@ import PostLayout from "components/Layout/PostLayout";
 import { API_URL } from "config/api";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import type { ReactElement } from "react";
 import { unsplashLoader } from "utils/imageLoader";
 import { IAlbum, IPost } from "utils/posts";
@@ -20,6 +21,7 @@ export default function Post({ post, comments }: PostProps): ReactElement {
     <PostLayout>
       <Head>
         <title>{post.title}</title>
+        <meta name="robots" content="all" />
       </Head>
       <Container maxW={{ base: "container.sm", md: "container.md" }}>
         <Heading as="h1" mb={6}>
